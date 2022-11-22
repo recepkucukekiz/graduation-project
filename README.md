@@ -1,4 +1,4 @@
-# dukkansepeti
+# graduation project
 
 A new Flutter project.
 
