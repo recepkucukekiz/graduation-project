@@ -121,7 +121,9 @@ class DevelopmentPage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const SearchPage()),
+                                  builder: (context) => const SearchPage(
+                                        query: "test query",
+                                      )),
                             );
                           },
                           child: const Text("Search Page")),

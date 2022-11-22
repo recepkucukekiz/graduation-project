@@ -1,4 +1,5 @@
 import 'package:dukkansepeti/pages/category_page.dart';
+import 'package:dukkansepeti/pages/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:outline_search_bar/outline_search_bar.dart';
 
@@ -11,25 +12,58 @@ class StartupPage extends StatefulWidget {
 
 class _StartupPageState extends State<StartupPage> {
   Widget bottomGridView(BuildContext context, double height, String page) {
+    List<String> categories = [
+      "Bakery",
+      "Butcher",
+      "Dairy",
+      "Fruit & Veg",
+      "Grocery",
+      "Meat",
+      "Seafood",
+      "Vegetables",
+    ];
     return SizedBox(
       height: height,
       child: GridView.count(
         scrollDirection: Axis.horizontal,
         crossAxisCount: 2,
         childAspectRatio: (1 / 2),
-        children: List.generate(4, (index) {
+        mainAxisSpacing: 12,
+        crossAxisSpacing: 12,
+        children: List.generate(6, (index) {
           return InkWell(
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => CategoryPage(title: page)),
+                    builder: (context) =>
+                        CategoryPage(title: categories[index])),
               );
             },
-            child: const Card(
-              color: Colors.white12,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                gradient: const LinearGradient(
+                  colors: [
+                    Color.fromRGBO(255, 143, 158, 1),
+                    Color.fromRGBO(255, 188, 143, 1),
+                  ],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                ),
+                // boxShadow: [
+                //   BoxShadow(
+                //     color: Colors.pink.withOpacity(0.2),
+                //     spreadRadius: 4,
+                //     blurRadius: 10,
+                //     offset: const Offset(0, 3),
+                //   )
+                // ],
+                // color: Color.fromARGB(150, 146, 146, 146),
+              ),
+              // color: Color.fromARGB(31, 253, 0, 0),
               child: Center(
-                child: Text("berber"),
+                child: Text(categories[index]),
               ),
             ),
           );
@@ -42,13 +76,20 @@ class _StartupPageState extends State<StartupPage> {
     return OutlineSearchBar(
       textEditingController: textController,
       hintText: "Search anything..",
-      borderColor: Colors.blueAccent,
+      borderColor: const Color.fromRGBO(255, 188, 143, 1),
       borderRadius: BorderRadius.circular(25),
-      searchButtonIconColor: Colors.blueAccent,
+      searchButtonIconColor: const Color.fromRGBO(255, 143, 158, 1),
       onSearchButtonPressed: (value) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(value),
-        ));
+        if (value != "") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SearchPage(query: value)),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text("Please enter a search query"),
+          ));
+        }
       },
     );
   }
@@ -57,7 +98,23 @@ class _StartupPageState extends State<StartupPage> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: const Color.fromARGB(100, 146, 146, 146),
+        gradient: const LinearGradient(
+          colors: [
+            Color.fromRGBO(255, 143, 158, 1),
+            Color.fromRGBO(255, 188, 143, 1),
+          ],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.pink.withOpacity(0.2),
+            spreadRadius: 4,
+            blurRadius: 10,
+            offset: const Offset(0, 3),
+          )
+        ],
+        // color: Color.fromARGB(150, 146, 146, 146),
       ),
       height: height,
       width: width,
@@ -93,7 +150,11 @@ class _StartupPageState extends State<StartupPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                topView(width, height - 200 - 90 - 2 * spaceSize),
+                topView(
+                    width,
+                    height -
+                        (200 + 90 + 40) -
+                        3 * spaceSize), // 200=bottomGridView, 90=searcBox, 2*spaceSize=space, 40=button
                 SizedBox(
                   height: spaceSize,
                 ),
@@ -102,6 +163,50 @@ class _StartupPageState extends State<StartupPage> {
                   height: spaceSize,
                 ),
                 bottomGridView(context, 200, "Berber"),
+                SizedBox(
+                  height: spaceSize,
+                ),
+                Container(
+                  height: 40,
+                  width: 280,
+                  decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [
+                          Color.fromRGBO(255, 143, 158, 1),
+                          Color.fromRGBO(255, 188, 143, 1),
+                        ],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(25.0),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.pink.withOpacity(0.2),
+                          spreadRadius: 4,
+                          blurRadius: 10,
+                          offset: const Offset(0, 3),
+                        )
+                      ]),
+                  child: Center(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        'Are you worker or owner of a shop?',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontFamily: "Netflix",
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
