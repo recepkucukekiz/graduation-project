@@ -13,7 +13,7 @@ Widget shopCard(BuildContext context, double width, String name) {
       margin: const EdgeInsets.all(15.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: const Color.fromARGB(100, 146, 146, 146),
+        color: Color.fromARGB(98, 255, 0, 0),
         // image: DecorationImage(
         //   image: NetworkImage(
         //       "https://i4.hurimg.com/i/hurriyet/75/750x422/63012c584e3fe1034048147a.jpg"),
