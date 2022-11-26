@@ -16,8 +16,10 @@ class _ShopPageState extends State<ShopPage> {
   bool isSelected = false;
   List<bool> selectedServiceToogleList = List.filled(6, false);
   List<bool> selectedWorkerToogleList = List.filled(6, false);
+  String selectedService = '';
+  String selectedWorker = '';
 
-  Widget shopCard(String name) {
+  Widget shopCardWidget(String name) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
@@ -52,16 +54,20 @@ class _ShopPageState extends State<ShopPage> {
           if (type == "Services") {
             if (selectedServiceToogleList[id] == true) {
               selectedServiceToogleList[id] = false;
+              selectedService = '';
             } else {
               selectedServiceToogleList = List.filled(6, false);
               selectedServiceToogleList[id] = true;
+              selectedService = text;
             }
           } else {
             if (selectedWorkerToogleList[id] == true) {
               selectedWorkerToogleList[id] = false;
+              selectedWorker = '';
             } else {
               selectedWorkerToogleList = List.filled(6, false);
               selectedWorkerToogleList[id] = true;
+              selectedWorker = text;
             }
           }
         });
@@ -95,7 +101,11 @@ class _ShopPageState extends State<ShopPage> {
     );
   }
 
-  Widget wdgt(String title, IconData icon, String text) {
+  Widget sectionWidget(String title, IconData icon, String text, List list) {
+    List<Widget> childrenList = List<Widget>.empty(growable: true);
+    for (var element in list) {
+      childrenList.add(itemBox(icon, element, list.indexOf(element), title));
+    }
     return Wrap(
       runSpacing: 12,
       children: [
@@ -109,14 +119,7 @@ class _ShopPageState extends State<ShopPage> {
               crossAxisSpacing: 16,
               mainAxisSpacing: 16,
             ),
-            children: [
-              itemBox(icon, text, 0, title),
-              itemBox(icon, text, 1, title),
-              itemBox(icon, text, 2, title),
-              itemBox(icon, text, 3, title),
-              itemBox(icon, text, 4, title),
-              itemBox(icon, text, 5, title),
-            ],
+            children: childrenList,
           ),
         ),
       ],
@@ -146,7 +149,7 @@ class _ShopPageState extends State<ShopPage> {
             child: Wrap(
               runSpacing: 28,
               children: [
-                shopCard("name"),
+                shopCardWidget("name"),
                 Wrap(
                   direction: Axis.vertical,
                   spacing: 8,
@@ -163,8 +166,15 @@ class _ShopPageState extends State<ShopPage> {
                         "Beyazevler Mah. 80026 Sokak Tülay Çakiroglu Apt. No:5/3 Cukurova/Adana"),
                   ],
                 ),
-                wdgt("Services", Icons.cut, "service"),
-                wdgt("Workers", Icons.people, "worker"),
+                sectionWidget("Services", Icons.cut, "service",
+                    ["Saç", "Sakal", "Kuru Saç", "Kuru Sakal", "Bakım"]),
+                sectionWidget("Workers", Icons.people, "worker",
+                    ["Suha", "Ali", "Veli", "Ayşe", "Fatma"]),
+                Center(
+                  child: Text(selectedService == '' || selectedWorker == ''
+                      ? "Please select a service and a worker"
+                      : "You select $selectedService from $selectedWorker"),
+                ),
                 Center(
                   child: Container(
                     height: 40,
