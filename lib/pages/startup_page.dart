@@ -3,6 +3,8 @@ import 'package:dukkansepeti/pages/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:outline_search_bar/outline_search_bar.dart';
 
+import 'management/selectionPage.dart';
+
 class StartupPage extends StatefulWidget {
   const StartupPage({super.key});
 
@@ -192,7 +194,10 @@ class _StartupPageState extends State<StartupPage> {
                   child: Center(
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SelectionPage()));
                       },
                       child: const Text(
                         'Are you worker or owner of a shop?',

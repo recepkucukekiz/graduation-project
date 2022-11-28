@@ -27,7 +27,7 @@ class _CategoryPageState extends State<CategoryPage> {
               });
             },
             child: const Card(
-              color: Colors.white12,
+              color: Color.fromARGB(98, 255, 0, 0),
               child: Center(
                 child: Text("berber"),
               ),

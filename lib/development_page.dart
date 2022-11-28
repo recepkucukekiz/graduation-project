@@ -1,6 +1,8 @@
 import 'package:dukkansepeti/pages/booking_page.dart';
 import 'package:dukkansepeti/pages/booking_result_page.dart';
 import 'package:dukkansepeti/pages/category_page.dart';
+import 'package:dukkansepeti/pages/management/Login/login_screen.dart';
+import 'package:dukkansepeti/pages/management/resourceView.dart';
 import 'package:dukkansepeti/pages/search_page.dart';
 import 'package:dukkansepeti/pages/shop_page.dart';
 import 'package:dukkansepeti/pages/startup_page.dart';
@@ -41,61 +43,61 @@ class DevelopmentPage extends StatelessWidget {
                     crossAxisCount: 2,
                     childAspectRatio: (1 / 1),
                     children: [
-                      ElevatedButton(
-                        child: const Text('Snackbar'),
-                        onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //       builder: (context) => BookingCalendarDemoApp(
-                          //             msg: "annee",
-                          //           )),
-                          // );
-                        },
-                      ),
-                      ElevatedButton(
-                          onPressed: () {
-                            showModalBottomSheet(
-                                context: context,
-                                builder: (context) {
-                                  return Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[
-                                      const Text("abc"),
-                                      ListTile(
-                                        leading: new Icon(Icons.photo),
-                                        title: new Text('Photo'),
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                        },
-                                      ),
-                                      ListTile(
-                                        leading: new Icon(Icons.music_note),
-                                        title: new Text('Music'),
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                        },
-                                      ),
-                                      ListTile(
-                                        leading: new Icon(Icons.videocam),
-                                        title: new Text('Video'),
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                        },
-                                      ),
-                                      ListTile(
-                                        leading: new Icon(Icons.share),
-                                        title: new Text('Share'),
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                        },
-                                      ),
-                                    ],
-                                  );
-                                });
-                          },
-                          child: const Text("Bottom sheet")),
+                      // ElevatedButton(
+                      //   child: const Text('Snackbar'),
+                      //   onPressed: () {
+                      //     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      //     // Navigator.push(
+                      //     //   context,
+                      //     //   MaterialPageRoute(
+                      //     //       builder: (context) => BookingCalendarDemoApp(
+                      //     //             msg: "annee",
+                      //     //           )),
+                      //     // );
+                      //   },
+                      // ),
+                      // ElevatedButton(
+                      //     onPressed: () {
+                      //       showModalBottomSheet(
+                      //           context: context,
+                      //           builder: (context) {
+                      //             return Column(
+                      //               mainAxisSize: MainAxisSize.min,
+                      //               children: <Widget>[
+                      //                 const Text("abc"),
+                      //                 ListTile(
+                      //                   leading: new Icon(Icons.photo),
+                      //                   title: new Text('Photo'),
+                      //                   onTap: () {
+                      //                     Navigator.pop(context);
+                      //                   },
+                      //                 ),
+                      //                 ListTile(
+                      //                   leading: new Icon(Icons.music_note),
+                      //                   title: new Text('Music'),
+                      //                   onTap: () {
+                      //                     Navigator.pop(context);
+                      //                   },
+                      //                 ),
+                      //                 ListTile(
+                      //                   leading: new Icon(Icons.videocam),
+                      //                   title: new Text('Video'),
+                      //                   onTap: () {
+                      //                     Navigator.pop(context);
+                      //                   },
+                      //                 ),
+                      //                 ListTile(
+                      //                   leading: new Icon(Icons.share),
+                      //                   title: new Text('Share'),
+                      //                   onTap: () {
+                      //                     Navigator.pop(context);
+                      //                   },
+                      //                 ),
+                      //               ],
+                      //             );
+                      //           });
+                      //     },
+                      //     child: const Text("Bottom sheet")),
                       ElevatedButton(
                           onPressed: () {
                             Navigator.push(
@@ -154,6 +156,23 @@ class DevelopmentPage extends StatelessWidget {
                             );
                           },
                           child: const Text("Booking Result Page")),
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const LoginScreen()));
+                          },
+                          child: const Text("Login Page")),
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ResourceView()));
+                          },
+                          child: const Text("ResourceView Page")),
                     ]),
               )
             ],
