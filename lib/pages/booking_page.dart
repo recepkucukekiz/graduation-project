@@ -31,15 +31,43 @@ class _BookingPageState extends State<BookingPage> {
     return Stream.value([]);
   }
 
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Booking Result'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('You have successfully booked the service.'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Future<dynamic> uploadBookingMock(
       {required BookingService newBooking}) async {
     await Future.delayed(const Duration(seconds: 1));
     converted.add(DateTimeRange(
         start: newBooking.bookingStart, end: newBooking.bookingEnd));
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ResultPage()),
-    );
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(builder: (context) => ResultPage()),
+    // );
+    _showMyDialog();
     print('${newBooking.toJson()} has been uploaded');
   }
 
