@@ -1,9 +1,8 @@
 import 'package:dukkansepeti/pages/category_page.dart';
+import 'package:dukkansepeti/pages/management/selection_page.dart';
 import 'package:dukkansepeti/pages/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:outline_search_bar/outline_search_bar.dart';
-
-import 'management/selectionPage.dart';
 
 class StartupPage extends StatefulWidget {
   const StartupPage({super.key});

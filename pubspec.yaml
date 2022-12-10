@@ -41,6 +41,8 @@ dependencies:
   flutter_svg: ^1.1.0
   flutter_auth: ^0.0.1
   syncfusion_flutter_calendar: ^20.3.58
+  http: ^0.13.5
+  time_range_picker: ^2.2.0
 
 dev_dependencies:
   flutter_test:

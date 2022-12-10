@@ -1,8 +1,9 @@
 import 'package:dukkansepeti/pages/booking_page.dart';
 import 'package:dukkansepeti/pages/booking_result_page.dart';
 import 'package:dukkansepeti/pages/category_page.dart';
-import 'package:dukkansepeti/pages/management/Login/login_screen.dart';
+import 'package:dukkansepeti/pages/management/login.dart';
 import 'package:dukkansepeti/pages/management/resourceView.dart';
+import 'package:dukkansepeti/pages/management/selection_page.dart';
 import 'package:dukkansepeti/pages/search_page.dart';
 import 'package:dukkansepeti/pages/shop_page.dart';
 import 'package:dukkansepeti/pages/startup_page.dart';
@@ -161,7 +162,7 @@ class DevelopmentPage extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const LoginScreen()));
+                                    builder: (context) => LoginScreen()));
                           },
                           child: const Text("Login Page")),
                       ElevatedButton(
@@ -173,6 +174,14 @@ class DevelopmentPage extends StatelessWidget {
                                         const ResourceView()));
                           },
                           child: const Text("ResourceView Page")),
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SelectionPage()));
+                          },
+                          child: const Text("Selection Page")),
                     ]),
               )
             ],
